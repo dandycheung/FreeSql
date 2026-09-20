@@ -296,6 +296,18 @@ namespace FreeSql
 			expContext.Value.Result = $"count(distinct {expContext.Value.ParsedContent["column"]})";
 			return 0;
 		}
+		
+		/// <summary>
+        /// 执行原生sql。如：<c>InternalRawSql&lt;int&gt;("Id*1")</c>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public static T InternalRawSql<T>([RawValue] string sql)
+        {
+            expContext.Value.Result = sql;
+            return default;
+        }
 
 		/// <summary>
 		/// 注意：使用者自己承担【注入风险】
